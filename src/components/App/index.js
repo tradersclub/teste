@@ -1,11 +1,15 @@
 import React from 'react'
 import Routes from '../../routes'
-import GlobalStyles from './styles'
+import GlobalStyles, { Container } from './styles'
+import Sidebar from '../Sidebar'
 
 export default function App() {
   return (
     <>
-      <Routes />
+      <Container>
+        <Sidebar />
+        <Routes />
+      </Container>
       <GlobalStyles />
     </>
   )
