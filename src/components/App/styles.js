@@ -1,7 +1,7 @@
 import React from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-export default createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   html, body, #root {
     height: 100%;
   }
@@ -17,18 +17,16 @@ export default createGlobalStyle`
     font-family: 'Lobster Two', cursive;
     font-size: 100px;
   }
-`
-
-export const Container = ({ children, styles: globalStyles }) => {
-  const ContainerStyled = styled.div`
+  .app-container {
     display: flex;
     flex-direction: row;
     height: 100%;
-  `
-  return (
-    <ContainerStyled>
-      {children}
-      {globalStyles}
-    </ContainerStyled>
-  )
-}
+  }
+`
+
+export const Container = ({ children }) => (
+  <div className="app-container">
+    {children}
+    <GlobalStyles />
+  </div>
+)
