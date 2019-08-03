@@ -17,6 +17,7 @@ export const Content = styled.div`
   padding: 40px 50px;
   flex: 1;
   background-color: rgba(1, 19, 41, 0.88);
+  overflow-y: auto;
 
   > p {
     margin: 0;

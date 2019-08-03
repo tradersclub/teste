@@ -13,10 +13,6 @@ const GlobalStyles = createGlobalStyle`
     color:#f5f5f5;
     font-family: 'Roboto', sans-serif;
   }
-  .banner {
-    font-family: 'Lobster Two', cursive;
-    font-size: 100px;
-  }
   .app-container {
     display: flex;
     flex-direction: row;

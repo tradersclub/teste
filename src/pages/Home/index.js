@@ -1,10 +1,13 @@
 import React from 'react'
 import Page from '../../components/Page'
+import { Wellcome } from './styles'
 
 export default function Home() {
   return (
     <Page navbar>
-      <p>Pesquisa de veículos do TradersClub</p>
+      <Wellcome>
+        Pesquisa de veículos do <span>TradersClub</span>
+      </Wellcome>
     </Page>
   )
 }
