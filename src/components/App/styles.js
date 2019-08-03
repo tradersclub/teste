@@ -1,3 +1,4 @@
+import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
@@ -18,8 +19,16 @@ export default createGlobalStyle`
   }
 `
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-`
+export const Container = ({ children, styles: globalStyles }) => {
+  const ContainerStyled = styled.div`
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  `
+  return (
+    <ContainerStyled>
+      {children}
+      {globalStyles}
+    </ContainerStyled>
+  )
+}

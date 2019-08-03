@@ -6,11 +6,10 @@ import Sidebar from '../Sidebar'
 export default function App() {
   return (
     <>
-      <Container>
+      <Container styles={<GlobalStyles />}>
         <Sidebar />
         <Routes />
       </Container>
-      <GlobalStyles />
     </>
   )
 }
