@@ -1,7 +1,8 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Container } from './styles'
 
-export default function Navbar() {
+function Navbar({ history }) {
 
   const handlerSubmit = event => {
     event.preventDefault()
@@ -11,6 +12,8 @@ export default function Navbar() {
     alert(value)
   }
 
+  const addCar = () => history.push('/novo-carro')
+
   return (
     <Container onSubmit={handlerSubmit}>
       <input
@@ -19,9 +22,11 @@ export default function Navbar() {
         autoComplete="off"
         placeholder="Pesquise por nome"
       />
-      <button type="button">
+      <button type="button" onClick={addCar}>
         Cadastrar
       </button>
     </Container>
   )
 }
+
+export default withRouter(Navbar)
