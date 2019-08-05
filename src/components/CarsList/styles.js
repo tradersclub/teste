@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div``
 
-export const Cars = styled.div`
+export const Car = styled.div`
   list-style: none;
 
   a {
