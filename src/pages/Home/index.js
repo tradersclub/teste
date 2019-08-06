@@ -4,11 +4,19 @@ import Page from '../../components/Page'
 import CarsList from '../../components/CarsList'
 import { Wellcome } from './styles'
 
+const Loading = () =>
+  <img
+    src={require('../../assets/img/loading-icon.svg')}
+    alt="loading"
+  />
+
 export default () => {
-  const cars = useSelector(state => state.data)
+  const { data: cars, loading, error } = useSelector(state => state)
   return (
     <Page navbar>
-      {cars && cars.length ?
+      {error && <p>{error}</p>}
+      {loading && <Loading />}
+      {cars.length ?
         <CarsList cars={cars} />
       :
         <Wellcome>

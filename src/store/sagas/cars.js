@@ -1,11 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import api from '../../services/api'
 
-function* fetchCars() {
+function* fetchCars(action) {
   try {
-    const result = yield call(() => api.get('cars'))
-    const data = result.data
-    yield put({ type: 'SET_CARS', cars: data.cars })
+    const query = `cars?search=${action.search}`
+    const response = yield call(() => api.get(query))
+    const { cars } = response.data
+    yield put({ type: 'SET_CARS', cars })
   } catch({ message }) {
     yield put({ type: 'FETCH_CARS_FAILED', message })
   }

@@ -1,5 +1,6 @@
-export const fetchCars = () => ({
-  type: 'FETCH_CARS'
+export const fetchCars = (search) => ({
+  type: 'FETCH_CARS',
+  search
 })
 
 export const setCars = cars => ({
