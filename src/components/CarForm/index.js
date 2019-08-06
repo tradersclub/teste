@@ -3,10 +3,29 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Container, Form } from './styles'
 import { fetchBrands } from '../../store/actions/cars'
 
-export default function CarForm({ car: propsCar, handleSubmit, navigate }) {
+const Input = ({car, handleChange, id, label, type}) => (
+  <input
+    id={id}
+    value={car[id]}
+    placeholder={label}
+    type={type || 'text'}
+    onChange={handleChange}
+  />
+)
 
-  const dispatch = useDispatch()
-  
+const Controls = ({ car, navigate }) => (
+  <div className="controls">
+    {car && <button type="button">Remover</button> }
+    <button onClick={() => navigate('/')}>Cancelar</button>
+    <div className="divider" />
+    <button className="primary" type="submit">
+      {car ? 'Salvar' : 'Cadastrar'}
+    </button>
+  </div>
+)
+
+export default function CarForm({ car: propsCar, handleSubmit: editCar, navigate }) {
+
   const [car, setCar] = useState({
     id: '',
     brand: '',
@@ -18,55 +37,52 @@ export default function CarForm({ car: propsCar, handleSubmit, navigate }) {
     year: ''
   })
   
+  const dispatch = useDispatch()
+  const brands = useSelector(state => state.brands)
+  
   useEffect(() => {
     if(propsCar) setCar(propsCar)
   }, [propsCar])
+  useEffect(() => dispatch(fetchBrands()), [dispatch])
   
-  useEffect(() => {
-    dispatch(fetchBrands())
-  }, [])
+  const handleChange = ({ target }) =>
+    setCar({ ...car, [target.id]: target.value })
   
-  const brands = useSelector(state => state.brands)
+  const inputProps = {car, handleChange}
 
-  const FormControls = ({ navigate }) => (
-    <div className="controls">
-      {car && <button>Remover</button> }
-      <button onClick={() => navigate('/')}>Cancelar</button>
-      <div className="divider" />
-      <button className="primary">
-        {car ? 'Salvar' : 'Cadastrar'}
-      </button>
-    </div>
-  )
+  const handleSubmit = event => {
+    event.preventDefault()
+    editCar(car)
+  }
 
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         
-        <input value={car.title} placeholder="Titulo" />
+        <Input {...inputProps} id="title" label="Titulo" />
 
         <div className="form-inline">
-          <input value={car.model} placeholder="Modelo" />
-          <input value={car.year} placeholder="Ano" type="number" />
+          <Input {...inputProps} id="model" label="Modelo" />
+          <Input {...inputProps} id="year" label="Ano" type="number" />
         </div>
 
         <select value={car.brand}>
-          <option>Selcione uma marca</option>
+          <option disabled selected>Selcione uma marca</option>
           {brands.map(brand =>
             <option key={brand.id} value={brand.name}>{brand.name}</option>
           )}
         </select>
 
         <div className="form-inline">
-          <input value={car.color} placeholder="Cor" />
-          <input value={car.price} placeholder="Preço" type="number" />
+          <Input {...inputProps} id="color" label="Cor" />
+          <Input {...inputProps} id="price" label="Preço" type="number" />
         </div>
 
         <div className="form-inline">
-          <input value={car.km} placeholder="Km" type="number" />
+          <Input {...inputProps} id="km" label="Km" type="number" />
         </div>
 
-        <FormControls navigate={navigate} />
+        <Controls car={car} navigate={navigate} />
 
       </Form>
     </Container>

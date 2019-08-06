@@ -8,6 +8,11 @@ export const setCars = cars => ({
   cars
 })
 
+export const editCar = car => ({
+  type: 'EDIT_CAR',
+  car
+})
+
 export const fetchBrands = () => ({
   type: 'FETCH_BRANDS'
 })

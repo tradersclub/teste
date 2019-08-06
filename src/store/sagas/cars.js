@@ -13,6 +13,18 @@ function* fetchCars(action) {
   }
 }
 
+function* editCar(action) {
+  try {
+    const car = action.car
+    const response = yield call(() => api.put(`cars/${car.id}`, {car}))
+    const data = response.data
+    yield put({ type: 'EDIT_CAR_SUCCESSFULL', car: data.car })
+    alert('Carro atualizado com sucesso!')
+  } catch({ message }) {
+    yield put({ type: 'EDIT_CAR_FAILED', message })
+  }
+}
+
 function* fetchBrands() {
   try {
     const response = yield call(() => api.get('brands'))
@@ -25,5 +37,6 @@ function* fetchBrands() {
 
 export default function* carsSaga() {
   yield takeEvery('FETCH_CARS', fetchCars)
+  yield takeEvery('EDIT_CAR', editCar)
   yield takeEvery('FETCH_BRANDS', fetchBrands)
 }
