@@ -3,12 +3,7 @@ import { useSelector } from 'react-redux'
 import Page from '../../components/Page'
 import CarsList from '../../components/CarsList'
 import { Wellcome } from './styles'
-
-const Loading = () =>
-  <img
-    src={require('../../assets/img/loading-icon.svg')}
-    alt="loading"
-  />
+import Loading from '../../components/Loading'
 
 export default () => {
   const { data: cars, loading, error } = useSelector(state => state)
