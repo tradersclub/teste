@@ -12,7 +12,7 @@ export default function Routes() {
       <Router>
         <Route path="/" exact component={Home} />
         <Route path="/novo-carro" component={NewCar} />
-        <Route path="/editar-carro" component={EditCar} />
+        <Route path="/editar-carro/:id" component={EditCar} />
       </Router>
     </Provider>
   )

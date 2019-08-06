@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
   data: [],
   loading: false,
-  error: null
+  error: null,
+  brands: []
 }
 
 export default function carsReducer(state = INITIAL_STATE, action) {
@@ -14,6 +15,8 @@ export default function carsReducer(state = INITIAL_STATE, action) {
       return {...state, data: action.cars, error: null, loading: false}
     case 'ADD_CAR':
       return {...state, data: [...state.data, action.car]}
+    case 'SET_BRANDS':
+      return {...state, brands: action.brands}
     default:
       return state
   }
