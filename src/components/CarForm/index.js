@@ -24,10 +24,9 @@ const Controls = ({ car, navigate }) => (
   </div>
 )
 
-export default function CarForm({ car: propsCar, handleSubmit: editCar, navigate }) {
+export default function CarForm({ car: propsCar, handleSubmit: handleSubmitCar, navigate }) {
 
   const [car, setCar] = useState({
-    id: '',
     brand: '',
     color: '',
     km: '',
@@ -52,7 +51,7 @@ export default function CarForm({ car: propsCar, handleSubmit: editCar, navigate
 
   const handleSubmit = event => {
     event.preventDefault()
-    editCar(car)
+    handleSubmitCar(car)
   }
 
   return (
@@ -66,7 +65,7 @@ export default function CarForm({ car: propsCar, handleSubmit: editCar, navigate
           <Input {...inputProps} id="year" label="Ano" type="number" />
         </div>
 
-        <select value={car.brand}>
+        <select value={car.brand || null} id="brand" onChange={handleChange}>
           <option disabled selected>Selcione uma marca</option>
           {brands.map(brand =>
             <option key={brand.id} value={brand.name}>{brand.name}</option>

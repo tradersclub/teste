@@ -8,6 +8,11 @@ export const setCars = cars => ({
   cars
 })
 
+export const addCar = car => ({
+  type: 'ADD_CAR',
+  car
+})
+
 export const editCar = car => ({
   type: 'EDIT_CAR',
   car

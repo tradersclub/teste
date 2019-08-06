@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import api from '../../services/api'
 
 function* fetchCars(action) {
@@ -10,6 +10,18 @@ function* fetchCars(action) {
     yield put({ type: 'SET_CARS', cars: carsWithId })
   } catch({ message }) {
     yield put({ type: 'FETCH_CARS_FAILED', message })
+  }
+}
+
+function* addCar(action) {
+  try {
+    const car = action.car
+    const response = yield call(() => api.post('cars', {car}))
+    const data = response.data
+    yield put({ type: 'ADD_CAR_SUCCESSFULL', car: data.car })
+    alert('Carro cadastrado com sucesso!')
+  } catch({ message }) {
+    yield put({ type: 'ADD_CAR_FAILED', message })
   }
 }
 
@@ -37,6 +49,7 @@ function* fetchBrands() {
 
 export default function* carsSaga() {
   yield takeEvery('FETCH_CARS', fetchCars)
-  yield takeEvery('EDIT_CAR', editCar)
+  yield takeLatest('ADD_CAR', addCar)
+  yield takeLatest('EDIT_CAR', editCar)
   yield takeEvery('FETCH_BRANDS', fetchBrands)
 }
