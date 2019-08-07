@@ -30,7 +30,7 @@ const Controls = ({ car, navigate, removeCar }) => (
   </div>
 )
 
-export default function CarForm(props) {
+export default props => {
 
   const {
     car: propsCar,

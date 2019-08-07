@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   removeCarLoading: false
 }
 
-function findAndUpdate(car, cars) {
+const findAndUpdate = (car, cars) => {
   let list = []
   cars.map(item => {
     item.id === car.id ? list.push(car) : list.push(item)
@@ -17,7 +17,7 @@ function findAndUpdate(car, cars) {
   return list
 }
 
-export default function carsReducer(state = INITIAL_STATE, action) {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'FETCH_CARS':
       return {...state, loading: true}

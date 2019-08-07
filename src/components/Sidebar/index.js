@@ -1,10 +1,7 @@
 import React from 'react'
 import { Container } from './styles'
 
-export default function Sidebar() {
-  return (
-    <Container>
-      <h1>TradersClub</h1>
-    </Container>
-  )
-}
+export default () =>
+  <Container>
+    <h1>TradersClub</h1>
+  </Container>

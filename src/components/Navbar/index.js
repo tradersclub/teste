@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { fetchCars } from '../../store/actions/cars'
 import { Container } from './styles'
 
-function Navbar({ history }) {
+const Navbar = ({ history }) => {
   const dispatch = useDispatch()
   
   const handlerSubmit = event => {
