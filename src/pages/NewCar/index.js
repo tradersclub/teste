@@ -15,9 +15,8 @@ export default ({ history }) => {
   }
 
   return (
-    <Page>
+    <Page title="Novo carro">
       {loading && <Loading/>}
-      <h1>Novo carro</h1>
       <CarForm
         handleSubmit={handleAddCar}
         navigate={history.push}

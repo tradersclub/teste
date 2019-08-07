@@ -28,9 +28,8 @@ export default ({ history, match }) => {
   }
 
   return (
-    <Page>
+    <Page title="Editar carro">
       {(loadingEdit || loadingRemove) && <Loading/>}
-      <h1>Editar carro</h1>
       {!car ?
         <p>Carro não encontrado.</p> :
         <CarForm

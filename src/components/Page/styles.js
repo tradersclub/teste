@@ -23,3 +23,7 @@ export const Content = styled.div`
     margin: 0;
   }
 `
+
+export const Title = styled.h1`
+  margin-bottom: 30px;
+`
