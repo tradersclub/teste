@@ -56,7 +56,9 @@ export default props => {
   useEffect(() => {
     if(propsCar) setCar(propsCar)
   }, [propsCar])
-  useEffect(() => dispatch(fetchBrands()), [dispatch])
+  useEffect(() => {
+    dispatch(fetchBrands())
+  }, [dispatch])
   
   const handleChange = ({ target }) => {
     const { id, value, type } = target
