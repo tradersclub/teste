@@ -10,6 +10,7 @@ const Input = ({car, handleChange, id, label, type}) => (
     placeholder={label}
     type={type || 'text'}
     onChange={handleChange}
+    required
   />
 )
 
@@ -40,7 +41,7 @@ export default props => {
   } = props
 
   const [car, setCar] = useState({
-    brand: null,
+    brand: String,
     color: String,
     km: Number,
     model: String,
@@ -82,8 +83,8 @@ export default props => {
           <Input {...inputProps} id="year" label="Ano" type="number" />
         </div>
 
-        <select value={car.brand || null} id="brand" onChange={handleChange}>
-          <option disabled selected>Selcione uma marca</option>
+        <select value={car.brand} id="brand" onChange={handleChange} required>
+          <option disabled selected value="">Selcione uma marca</option>
           {brands.map(brand =>
             <option key={brand.id} value={brand.name}>{brand.name}</option>
           )}
