@@ -40,13 +40,13 @@ export default props => {
   } = props
 
   const [car, setCar] = useState({
-    brand: '',
-    color: '',
-    km: '',
-    model: '',
-    price: '',
-    title: '',
-    year: ''
+    brand: null,
+    color: String,
+    km: Number,
+    model: String,
+    price: Number,
+    title: String,
+    year: Number
   })
   
   const dispatch = useDispatch()
@@ -57,8 +57,12 @@ export default props => {
   }, [propsCar])
   useEffect(() => dispatch(fetchBrands()), [dispatch])
   
-  const handleChange = ({ target }) =>
-    setCar({ ...car, [target.id]: target.value })
+  const handleChange = ({ target }) => {
+    const { id, value, type } = target
+    const updatedCar = { ...car, [id]: value }
+    if(type === 'number') updatedCar[id] = Number(value)
+    setCar(updatedCar)
+  }
   
   const inputProps = {car, handleChange}
 
