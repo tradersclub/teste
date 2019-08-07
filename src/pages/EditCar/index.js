@@ -29,7 +29,7 @@ export default ({ history, match }) => {
 
   return (
     <Page>
-      {loadingEdit || loadingRemove && <Loading/>}
+      {(loadingEdit || loadingRemove) && <Loading/>}
       <h1>Editar carro</h1>
       {!car ?
         <p>Carro não encontrado.</p> :
