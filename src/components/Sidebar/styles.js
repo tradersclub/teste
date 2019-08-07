@@ -8,7 +8,12 @@ export const Container = styled.div`
   background-color: #0e1823;
   text-align: center;
 
-  > h1 {
+  > a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  > a > h1 {
     margin: 30px 0 0;
     display: inline-block;
     background: url(${logoTC}) no-repeat;
