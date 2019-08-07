@@ -18,6 +18,11 @@ export const editCar = car => ({
   car
 })
 
+export const removeCar = id => ({
+  type: 'REMOVE_CAR',
+  id
+})
+
 export const fetchBrands = () => ({
   type: 'FETCH_BRANDS'
 })

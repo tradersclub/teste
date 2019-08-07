@@ -13,18 +13,31 @@ const Input = ({car, handleChange, id, label, type}) => (
   />
 )
 
-const Controls = ({ car, navigate }) => (
+const Controls = ({ car, navigate, removeCar }) => (
   <div className="controls">
-    {car && <button type="button">Remover</button> }
+    {car.id &&
+      <button
+        type="button"
+        onClick={() => removeCar(car.id)}>
+        Remover
+      </button>
+    }
     <button onClick={() => navigate('/')}>Cancelar</button>
     <div className="divider" />
     <button className="primary" type="submit">
-      {car ? 'Salvar' : 'Cadastrar'}
+      {car.id ? 'Salvar' : 'Cadastrar'}
     </button>
   </div>
 )
 
-export default function CarForm({ car: propsCar, handleSubmit: handleSubmitCar, navigate }) {
+export default function CarForm(props) {
+
+  const {
+    car: propsCar,
+    handleSubmit: handleSubmitCar,
+    navigate,
+    removeCar
+  } = props
 
   const [car, setCar] = useState({
     brand: '',
@@ -81,7 +94,7 @@ export default function CarForm({ car: propsCar, handleSubmit: handleSubmitCar, 
           <Input {...inputProps} id="km" label="Km" type="number" />
         </div>
 
-        <Controls car={car} navigate={navigate} />
+        <Controls car={car} navigate={navigate} removeCar={removeCar} />
 
       </Form>
     </Container>

@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   error: null,
   brands: [],
   addCarLoading: false,
-  editCarLoading: false
+  editCarLoading: false,
+  removeCarLoading: false
 }
 
 function findAndUpdate(car, cars) {
@@ -36,6 +37,12 @@ export default function carsReducer(state = INITIAL_STATE, action) {
       return {...state, data: findAndUpdate(action.car, state.data), editCarLoading: false}
     case 'EDIT_CAR_FAILED':
       return {...state, editCarLoading: false}
+    case 'REMOVE_CAR':
+      return {...state, removeCarLoading: true}
+    case 'REMOVE_CAR_SUCCESSFULL':
+      return {...state, removeCarLoading: false}
+    case 'REMOVE_CAR_FAILED':
+      return {...state, removeCarLoading: false}
     case 'SET_BRANDS':
       return {...state, brands: action.brands}
     default:

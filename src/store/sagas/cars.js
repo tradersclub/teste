@@ -37,6 +37,16 @@ function* editCar(action) {
   }
 }
 
+function* removeCar(action) {
+  try {
+    yield call(() => api.delete(`cars/${action.id}`))
+    yield put({ type: 'REMOVE_CAR_SUCCESSFULL', id: action.id })
+    alert('Carro removido com sucesso!')
+  } catch({ message }) {
+    yield put({ type: 'REMOVE_CAR_FAILED', message })
+  }
+}
+
 function* fetchBrands() {
   try {
     const response = yield call(() => api.get('brands'))
@@ -51,5 +61,6 @@ export default function* carsSaga() {
   yield takeEvery('FETCH_CARS', fetchCars)
   yield takeLatest('ADD_CAR', addCar)
   yield takeLatest('EDIT_CAR', editCar)
+  yield takeLatest('REMOVE_CAR', removeCar)
   yield takeEvery('FETCH_BRANDS', fetchBrands)
 }

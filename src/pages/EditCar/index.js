@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Page from '../../components/Page'
 import CarForm from '../../components/CarForm'
-import { editCar } from '../../store/actions/cars'
+import { editCar, removeCar } from '../../store/actions/cars'
 import Loading from '../../components/Loading'
 
 export default ({ history, match }) => {
 
   const dispatch = useDispatch()
   const cars = useSelector(state => state.data)
-  const loading = useSelector(state => state.editCarLoading)
+  const loadingEdit = useSelector(state => state.editCarLoading)
+  const loadingRemove = useSelector(state => state.removeCarLoading)
   const [car, setCar] = useState(null)
   
   useEffect(() => {
@@ -22,9 +23,13 @@ export default ({ history, match }) => {
     dispatch(editCar(carToEdit))
   }
 
+  const handleRemoveCar = (carId) => {
+    dispatch(removeCar(carId))
+  }
+
   return (
     <Page>
-      {loading && <Loading/>}
+      {loadingEdit || loadingRemove && <Loading/>}
       <h1>Editar carro</h1>
       {!car ?
         <p>Carro não encontrado.</p> :
@@ -32,6 +37,7 @@ export default ({ history, match }) => {
           car={car}
           handleSubmit={handleEditCar}
           navigate={history.push}
+          removeCar={handleRemoveCar}
         />
       }
     </Page>
