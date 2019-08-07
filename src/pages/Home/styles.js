@@ -5,6 +5,7 @@ export const Container = styled.div``
 export const Wellcome = styled.h1`
   font-family: 'Lobster Two', cursive;
   font-size: 100px;
+  font-weight: normal;
   text-align: right;
   margin: 60px 0 60px;
   cursor: default;
